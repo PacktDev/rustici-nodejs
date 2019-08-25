@@ -27,7 +27,7 @@ describe('SuperAgent client', () => {
 
     it('Valid post request with basic auth', (done) => {
       const implementation = new SuperAgentClient(config);
-      implementation.postRequest(path, body)
+      implementation.postRequest<any>(path, body)
         .then((response) => {
           expect(response).to.have.ownProperty('status');
           expect(response).to.have.ownProperty('data');
@@ -41,7 +41,7 @@ describe('SuperAgent client', () => {
     it('Valid post request with bearer auth', (done) => {
       config.authTypes = ['bearer'];
       const implementation = new SuperAgentClient(config);
-      implementation.postRequest(path, body)
+      implementation.postRequest<any>(path, body)
         .then((response) => {
           expect(response).to.have.ownProperty('status');
           expect(response).to.have.ownProperty('data');
@@ -65,7 +65,7 @@ describe('SuperAgent client', () => {
 
     it('Valid get request with basic auth', (done) => {
       const implementation = new SuperAgentClient(config);
-      implementation.getRequest(path)
+      implementation.getRequest<any>(path)
         .then((response) => {
           expect(response).to.have.ownProperty('status');
           expect(response).to.have.ownProperty('data');
@@ -79,7 +79,7 @@ describe('SuperAgent client', () => {
     it('Valid get request with bearer auth', (done) => {
       config.authTypes = ['bearer'];
       const implementation = new SuperAgentClient(config);
-      implementation.getRequest(path)
+      implementation.getRequest<any>(path)
         .then((response) => {
           expect(response).to.have.ownProperty('status');
           expect(response).to.have.ownProperty('data');
@@ -104,7 +104,7 @@ describe('SuperAgent client', () => {
 
     it('Valid post request with basic auth', (done) => {
       const implementation = new SuperAgentClient(config);
-      implementation.putRequest(path, body)
+      implementation.putRequest<any>(path, body)
         .then((response) => {
           expect(response).to.have.ownProperty('status');
           expect(response).to.have.ownProperty('data');
@@ -118,7 +118,7 @@ describe('SuperAgent client', () => {
     it('Valid post request with apiKey', (done) => {
       config.authTypes = ['apiKey'];
       const implementation = new SuperAgentClient(config);
-      implementation.putRequest(path, body)
+      implementation.putRequest<any>(path, body)
         .then((response) => {
           expect(response).to.have.ownProperty('status');
           expect(response).to.have.ownProperty('data');
@@ -142,7 +142,7 @@ describe('SuperAgent client', () => {
 
     it('Valid get request with basic auth', (done) => {
       const implementation = new SuperAgentClient(config);
-      implementation.deleteRequest(path)
+      implementation.deleteRequest<any>(path)
         .then((response) => {
           expect(response).to.have.ownProperty('status');
           expect(response).to.have.ownProperty('data');
@@ -156,7 +156,7 @@ describe('SuperAgent client', () => {
     it('Valid get request with bearer auth', (done) => {
       config.authTypes = ['bearer'];
       const implementation = new SuperAgentClient(config);
-      implementation.deleteRequest(path)
+      implementation.deleteRequest<any>(path)
         .then((response) => {
           expect(response).to.have.ownProperty('status');
           expect(response).to.have.ownProperty('data');
