@@ -1,6 +1,6 @@
 {
   "name": "@packt/rustici-sdk",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Wrapper for Rustici API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -63,21 +63,10 @@
     "tslint-config-prettier": "1.18.0",
     "typescript": "3.5.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "linters": {
-      "*.{ts}": [
-        "prettier --write",
-        "git add"
-      ]
-    }
-  },
   "nyc": {
     "check-coverage": true,
+    "sourceMap": true,
+    "instrument": true,
     "lines": 90,
     "statements": 90,
     "functions": 90,

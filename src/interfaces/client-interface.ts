@@ -1,4 +1,4 @@
-export default interface Client {
+export default interface IClient {
   /**
    * The base URL against which to resolve every API call's (relative) path.
    * @type {String}
@@ -10,7 +10,7 @@ export default interface Client {
    * @type {Object}
    */
   authTypes: string[];
-  
+
   /**
    * The authorised username to get authenticated.
    * @type {String}
@@ -24,7 +24,7 @@ export default interface Client {
   password: string;
 
   /**
-   * The authorised secret key for authenticated API calls. 
+   * The authorised secret key for authenticated API calls.
    * @type {String}
    */
   apiKey: string;
