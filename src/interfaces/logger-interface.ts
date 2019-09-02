@@ -1,6 +1,6 @@
 import debug from 'debug';
 
-export default interface Logger {
+export default interface ILogger {
   /**
    * Info logger
    */

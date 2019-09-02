@@ -1,4 +1,4 @@
-export default interface Response {
+export default interface IResponse<T> {
   /**
    * Response status
    */
@@ -7,5 +7,5 @@ export default interface Response {
   /**
    * Response body
    */
-  data: any;
+  data: T;
 }

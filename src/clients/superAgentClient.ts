@@ -2,18 +2,18 @@ import * as Superagent from 'superagent';
 import * as querystring from 'querystring';
 import debug from 'debug';
 import ClientFactory from './clientFactory';
-import Logger from '../models/logger';
-import Client from '../models/client';
-import Response from '../models/response';
+import ILogger from '../interfaces/logger-interface';
+import IClient from '../interfaces/client-interface';
+import IResponse from '../interfaces/response-interface';
 
 export default class SuperAgentClient extends ClientFactory {
-  private logger: Logger;
+  private logger: ILogger;
 
   /**
    * Instantiate class
-   * @param {Client} config
+   * @param {IClient} config
    */
-  constructor(config: Client) {
+  constructor(config: IClient) {
     super(config);
 
     const infoLogger = debug('rustici-sdk:info');
@@ -21,22 +21,22 @@ export default class SuperAgentClient extends ClientFactory {
     this.logger = { info: infoLogger, error: errorLogger };
   }
 
-  public postRequest(path: string, body: object): Promise<Response> {
+  public postRequest<T>(path: string, body: object): Promise<IResponse<T>> {
     const request = this.createRequest('post', path, body);
     return request.then(response => this.deserialize(response, this.responseType));
   }
 
-  public getRequest(path: string): Promise<Response> {
+  public getRequest<T>(path: string): Promise<IResponse<T>> {
     const request = this.createRequest('get', path, undefined);
     return request.then(response => this.deserialize(response, this.responseType));
   }
 
-  public putRequest(path: string, body: object): Promise<Response> {
+  public putRequest<T>(path: string, body: object): Promise<IResponse<T>> {
     const request = this.createRequest('put', path, body);
     return request.then(response => this.deserialize(response, this.responseType));
   }
 
-  public deleteRequest(path: string): Promise<Response> {
+  public deleteRequest<T>(path: string): Promise<IResponse<T>> {
     const request = this.createRequest('delete', path, undefined);
     return request.then(response => this.deserialize(response, this.responseType));
   }
