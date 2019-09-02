@@ -6,7 +6,7 @@
   "rules": {
     "interface-name": [
       true,
-      "never-prefix"
+      "always-prefix"
     ],
     "no-string-literal": false,
     "member-ordering": false,

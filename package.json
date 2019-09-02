@@ -1,6 +1,6 @@
 {
   "name": "@packt/rustici-sdk",
-  "version": "0.0.1",
+  "version": "1.0.2",
   "description": "Wrapper for Rustici API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -48,9 +48,9 @@
     "@types/nock": "10.0.3",
     "@types/rewire": "2.5.28",
     "chai": "4.2.0",
-    "husky": "3.0.0",
+    "husky": "3.0.1",
     "lint-staged": "9.2.0",
-    "mocha": "6.1.4",
+    "mocha": "6.2.0",
     "nock": "10.0.6",
     "node-typescript": "0.1.3",
     "nyc": "14.1.1",
@@ -63,21 +63,10 @@
     "tslint-config-prettier": "1.18.0",
     "typescript": "3.5.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "linters": {
-      "*.{ts}": [
-        "prettier --write",
-        "git add"
-      ]
-    }
-  },
   "nyc": {
     "check-coverage": true,
+    "sourceMap": true,
+    "instrument": true,
     "lines": 90,
     "statements": 90,
     "functions": 90,

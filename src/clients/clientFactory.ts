@@ -1,7 +1,7 @@
 import Superagent from 'superagent';
 import { AxiosInstance } from 'axios';
-import Client from '../models/client';
-import Response from '../models/response';
+import Client from '../interfaces/client-interface';
+import Response from '../interfaces/response-interface';
 
 export default abstract class ClientFactory {
   public username: string;
@@ -40,42 +40,42 @@ export default abstract class ClientFactory {
 
   /**
    * Post request.
-   * @param {String} path 
-   * @param {Object} body 
+   * @param {String} path
+   * @param {Object} body
    * @returns {Promise<Object>}
    */
-  protected abstract postRequest(path: string, body: object): Promise<Response>;
+  public abstract postRequest<T>(path: string, body: object): Promise<Response<T>>;
 
   /**
    * Get request.
-   * @param {String} path 
+   * @param {String} path
    * @returns {Promise<Object>}
    */
-  protected abstract getRequest(path: string): Promise<Response>;
+  public abstract getRequest<T>(path: string): Promise<Response<T>>;
 
   /**
    * Put request.
-   * @param {String} path 
-   * @param {Object} body 
+   * @param {String} path
+   * @param {Object} body
    * @returns {Promise<Object>}
    */
-  protected abstract putRequest(path: string, body: object): Promise<Response>;
+  public abstract putRequest<T>(path: string, body: object): Promise<Response<T>>;
 
   /**
    * Delete request.
-   * @param {String} path  
+   * @param {String} path
    * @returns {Promise<Object>}
    */
-  protected abstract deleteRequest(path: string): Promise<Response>;
+  public abstract deleteRequest<T>(path: string): Promise<Response<T>>;
 
   /**
    * Creates the request.
-   * @param {String} httpMethod 
-   * @param {String} path 
+   * @param {String} httpMethod
+   * @param {String} path
    * @param {Object} body
-   * @returns {Promise<Superagent.SuperAgentRequest | AxiosInstance>} 
+   * @returns {Promise<Superagent.SuperAgentRequest | AxiosInstance>}
    */
-  protected abstract createRequest(httpMethod: string, path: string, body: any): Superagent.SuperAgentRequest | AxiosInstance;
+  public abstract createRequest(httpMethod: string, path: string, body: any): Superagent.SuperAgentRequest | AxiosInstance;
 
   /**
    * Builds full URL by appending the given path to the base URL and replacing path parameter place-holders with parameter values.
@@ -190,11 +190,11 @@ export default abstract class ClientFactory {
    * or the constructor function for a complex type. Pass an array containing the type name to return an array of that type. To
    * return an object, pass an object with one property whose name is the key type and whose value is the corresponding value type:
    * all properties on <code>data<code> will be converted to this type.
-   * @returns {Object} Status field & deserialize body 
+   * @returns {Object} Status field & deserialize body
    */
-  public deserialize(response: Superagent.Response, returnType: string) {
+  public deserialize<T>(response: Superagent.Response, returnType: string) {
     if (response === null || returnType === null || response.status === 204) {
-      return {} as Response;
+      return {} as Response<T>;
     }
 
     // Rely on SuperAgent for parsing response body.
@@ -212,6 +212,6 @@ export default abstract class ClientFactory {
     return {
       status: response.status,
       data,
-    } as Response;
+    } as Response<T>;
   }
 }
