@@ -1,9 +1,9 @@
 import ClientFactory from "../clients/clientFactory";
-import ICourse from "../interfaces/rustici-course-interface";
 import IResponse from "../interfaces/response-interface";
+import ICourseList from "../interfaces/rustici-course-list-interface";
 
 export default class Courses {
-  client: ClientFactory;
+  private client: ClientFactory;
 
   constructor(clientFactory: ClientFactory) {
     this.client = clientFactory;
@@ -11,9 +11,9 @@ export default class Courses {
 
   /**
    * Returns a list of all courses
-   * @returns {Promise<IResponse<ICourse>>} course details
+   * @returns {Promise<IResponse<ICourseList>>} course details
    */
-  public async get(): Promise<IResponse<ICourse>> {
-    return this.client.getRequest<ICourse>('/courses');
+  public async get(): Promise<IResponse<ICourseList>> {
+    return this.client.getRequest<ICourseList>('/courses');
   }
 }

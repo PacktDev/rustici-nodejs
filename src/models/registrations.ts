@@ -5,7 +5,7 @@ import ILaunchLinkRequest from "../interfaces/rustici-launch-link-request-interf
 import ILaunchLink from "../interfaces/rustici-launch-link-interface";
 
 export default class Registrations {
-  client: ClientFactory;
+  private client: ClientFactory;
 
   constructor(clientFactory: ClientFactory) {
     this.client = clientFactory;
@@ -28,6 +28,6 @@ export default class Registrations {
    * @returns {Promise<IResponse<ILaunchLink>>} launch link
    */
   public async getLaunchLink(registrationId: string, launchDetails: ILaunchLinkRequest): Promise<IResponse<ILaunchLink>> {
-    return this.client.getRequest(`/registrations/${registrationId}/launchLink`);
+    return this.client.postRequest(`/registrations/${registrationId}/launchLink`, launchDetails);
   }
 }

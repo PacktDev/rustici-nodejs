@@ -29,7 +29,7 @@ describe('Index', () => {
 
   describe('Actual calls', () => {
     it('getCourses', async () => {
-      const expectedResult = { title: 'Joey Tribbiani', id: '30', webPath: 'ok' };
+      const expectedResult = { courses: [{ title: 'Joey Tribbiani', id: '30', webPath: 'ok' }] };
       const path = '/courses';
       const client = new RusticiSdk(undefined, config);
 
@@ -42,8 +42,8 @@ describe('Index', () => {
           expect(response).to.have.ownProperty('status');
           expect(response).to.have.ownProperty('data');
           expect(response.status).to.be.eql(200);
-          expect(response.data.title).to.be.eql('Joey Tribbiani');
-          expect(response.data.webPath).to.be.eql('ok');
+          expect(response.data.courses[0].title).to.be.eql('Joey Tribbiani');
+          expect(response.data.courses[0].webPath).to.be.eql('ok');
         });
     });
 
@@ -69,7 +69,7 @@ describe('Index', () => {
       const client = new RusticiSdk(undefined, config);
 
       Nock(config.basePath)
-        .get(path)
+        .post(path)
         .reply(200, expectedResult);
 
       await client.registrations.getLaunchLink('987', request)
