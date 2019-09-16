@@ -80,5 +80,23 @@ describe('Index', () => {
           expect(response.data.launchLink).to.be.eql('https://launch.url');
         });
     });
+
+    it('add webhook configuration', async () => {
+      const path = '/registrations/987/configuration'
+      const client = new RusticiSdk(undefined, config);
+      const configuration = {
+        settings: [{
+          settingId: 'ApiRollupRegistrationPostBackUrl',
+          value: 'http://post-back-url.com/bringitback',
+        }],
+      };
+
+      const nock = Nock(config.basePath)
+        .post(path)
+        .reply(204);
+
+        await client.registrations.addWebhookSettings('987', configuration)
+        .then(() => expect(nock.isDone()));
+    });
   });
 })

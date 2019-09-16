@@ -3,6 +3,7 @@ import IRegistrationSchema from "../interfaces/rustici-registration-schema";
 import IResponse from "../interfaces/response-interface";
 import ILaunchLinkRequest from "../interfaces/rustici-launch-link-request-interface";
 import ILaunchLink from "../interfaces/rustici-launch-link-interface";
+import IConfig from "../interfaces/rustici-config";
 
 export default class Registrations {
   private client: ClientFactory;
@@ -29,5 +30,15 @@ export default class Registrations {
    */
   public async getLaunchLink(registrationId: string, launchDetails: ILaunchLinkRequest): Promise<IResponse<ILaunchLink>> {
     return this.client.postRequest(`/registrations/${registrationId}/launchLink`, launchDetails);
+  }
+
+  /**
+   * Sets webhook configuration
+   * @param registrationId registration id
+   * @param configuration settings
+   * @returns {Promise<IResponse<void>>} no response
+   */
+  public async addWebhookSettings(registrationId: string, configuration: IConfig): Promise<IResponse<void>> {
+    return this.client.postRequest(`/registrations/${registrationId}/configuration`, configuration);
   }
 }
