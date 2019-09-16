@@ -1,6 +1,6 @@
 {
   "name": "@packt/rustici-sdk",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Wrapper for Rustici API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
