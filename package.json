@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@types/chai": "4.1.7",
-    "@types/mocha": "5.2.7",
+    "@types/mocha": "7.0.0",
     "@types/nock": "10.0.3",
     "@types/rewire": "2.5.28",
     "chai": "4.2.0",
